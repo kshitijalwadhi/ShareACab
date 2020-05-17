@@ -7,14 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-Color userIsOnline(BuildContext context) =>
-    Colors.green;
-Color sendMessageIcon(BuildContext context) =>
-    Colors.green;
-
-
+Color userIsOnline(BuildContext context) => Colors.green;
+Color sendMessageIcon(BuildContext context) => Colors.green;
 
 List<Color> getMenuItemColor = [
   Colors.amber,
@@ -24,8 +18,10 @@ List<Color> getMenuItemColor = [
   Colors.purple,
 ];
 
-Color chatBubbleBackgroundColorReceiver = Colors.grey; // Needs to be changed acc to combinations, requires creativity
-Color chatBubbleBackgroundColorSender = Colors.grey; // Needs to be changed acc to combinations, requires creativity
+Color chatBubbleBackgroundColorReceiver =
+    Colors.grey; // Needs to be changed acc to combinations, requires creativity
+Color chatBubbleBackgroundColorSender =
+    Colors.grey; // Needs to be changed acc to combinations, requires creativity
 
 final darkTheme = ThemeData(
   primarySwatch: Colors.grey,
@@ -42,20 +38,19 @@ final darkTheme = ThemeData(
 );
 
 final lightTheme = ThemeData(
-    primarySwatch: Colors.grey,
-    bottomAppBarColor: Colors.white,
-    primaryColor: Colors.grey[600],
-    //primaryColor: Colors.white,
-    brightness: Brightness.light,
-    backgroundColor: const Color(0xFFE5E5E5),
-    accentColor: Colors.blueGrey[700],
-    //accentColor: Colors.blueGrey[700],
-    accentIconTheme: IconThemeData(color: Colors.white),
-    dividerColor: Colors.white54,
-    scaffoldBackgroundColor: const Color(0xFFE5E5E5),
-
-    //scaffoldBackgroundColor: const Color(0xFFFFFF)
-    );
+  primarySwatch: Colors.grey,
+  bottomAppBarColor: Colors.white,
+  primaryColor: Colors.grey[600],
+  //primaryColor: Colors.white,
+  brightness: Brightness.light,
+  backgroundColor: const Color(0xFFE5E5E5),
+  accentColor: Colors.blueGrey[700],
+  //accentColor: Colors.blueGrey[700],
+  accentIconTheme: IconThemeData(color: Colors.white),
+  dividerColor: Colors.white54,
+  scaffoldBackgroundColor: const Color(0xFFE5E5E5),
+  //scaffoldBackgroundColor: const Color(0xFFFFFF)
+);
 
 class ThemeNotifier with ChangeNotifier {
   ThemeData _themeData;
@@ -63,8 +58,7 @@ class ThemeNotifier with ChangeNotifier {
   ThemeNotifier(this._themeData);
   ThemeData getTheme() => _themeData;
 
-
-    void setTheme(ThemeData themeData) async {
+  void setTheme(ThemeData themeData) async {
     _themeData = themeData;
     notifyListeners();
   }
@@ -83,7 +77,23 @@ void main() {
   });
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // final Brightness brightnessvalue =
+    //     MediaQuery.of(context).platformBrightness;
+    // print(brightnessvalue);
+    // bool isDark = brightnessvalue == Brightness.dark;
+    // var prefs = SharedPreferences.getInstance();
+    // prefs.setBool('darkMode', isDark);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
@@ -116,9 +126,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-class MyAppBar extends AppBar{
-  MyAppBar({Key key, Widget title, Icon icon}): super(key: key, title: title, actions: <Widget>[
-    IconButton(icon: icon, onPressed: (){})
-  ]);
+class MyAppBar extends AppBar {
+  MyAppBar({Key key, Widget title, Icon icon})
+      : super(
+            key: key,
+            title: title,
+            actions: <Widget>[IconButton(icon: icon, onPressed: () {})]);
 }

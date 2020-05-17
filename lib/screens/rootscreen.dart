@@ -31,6 +31,9 @@ class _RootScreenState extends State<RootScreen> {
 
   @override
   void initState() {
+    setState(() {
+      _selectedPage = 0;
+    });
     pagelist.add(Dashboard());
     pagelist.add(MyRequests());
     pagelist.add(Messages());
@@ -187,13 +190,6 @@ class _RootScreenState extends State<RootScreen> {
                 });
               },
             ),
-            // body: justLoggedin
-            //     ? Center(
-            //         child: Dashboard(),
-            //       )
-            //     : Center(
-            //         child: choose,
-            //       ),
             body: justLoggedin
                 ? Center(
                     child: Dashboard(),
@@ -202,6 +198,10 @@ class _RootScreenState extends State<RootScreen> {
                     index: _selectedPage,
                     children: pagelist,
                   ),
+            // body: IndexedStack(
+            //   index: _selectedPage,
+            //   children: pagelist,
+            // ),
           );
   }
 }
