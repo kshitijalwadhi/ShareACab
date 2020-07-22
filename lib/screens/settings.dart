@@ -149,9 +149,12 @@ class _SettingsState extends State<Settings> {
       ),
       body: ListView(
         children: <Widget>[
-          PreviewWidget(),
+          SizedBox(
+            height: w * 0.03,
+          ),
           ListTile(
             subtitle: Material(
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -210,6 +213,7 @@ class _SettingsState extends State<Settings> {
           ),
           ListTile(
             subtitle: Material(
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -326,86 +330,4 @@ class ThemeModel {
   String value, label;
 
   ThemeModel({this.value, this.label});
-}
-
-class PreviewWidget extends StatefulWidget {
-  @override
-  PreviewWidgetState createState() => PreviewWidgetState();
-}
-
-class PreviewWidgetState extends State<PreviewWidget> {
-  bool switchValue = true, checkBoxValue = true;
-  double sliderValue = 0.5;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Material(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Preview',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: getVisibleColorOnScaffold(context),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Switch(
-                    activeColor: Theme.of(context).accentColor,
-                    value: switchValue,
-                    onChanged: (_) {
-                      setState(() {
-                        switchValue = !switchValue;
-                      });
-                    }),
-                Radio(
-                  activeColor: Theme.of(context).accentColor,
-                  groupValue: 0,
-                  value: 0,
-                  onChanged: (_) {},
-                ),
-                Checkbox(
-                  activeColor: Theme.of(context).accentColor,
-                  value: checkBoxValue,
-                  onChanged: (_) {
-                    setState(() {
-                      checkBoxValue = !checkBoxValue;
-                    });
-                  },
-                ),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    'BUTTON',
-                    style: TextStyle(color: getVisibleColorOnAccentColor(context)),
-                  ),
-                  onPressed: () {},
-                )
-              ],
-            ),
-            Slider(
-              activeColor: Theme.of(context).accentColor,
-              onChanged: (double newValue) {
-                setState(() {
-                  sliderValue = newValue;
-                });
-              },
-              min: 0,
-              max: 1,
-              value: sliderValue,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
